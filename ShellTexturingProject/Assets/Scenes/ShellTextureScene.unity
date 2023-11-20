@@ -123,6 +123,60 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &700709480
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 700709482}
+  - component: {fileID: 700709481}
+  m_Layer: 0
+  m_Name: TestShaderObj (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &700709481
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700709480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af5587da37ad2d040ab247c261ae18a6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  shader: {fileID: 4800000, guid: 268713c419d1d1f45bb9195d454bb534, type: 3}
+  numShells: 5
+  shellLength: 0.2
+  density: 32
+  angle: 0.785398
+  rotationSpeed: 1
+  shellColor1: {r: 0.7735849, g: 0.12771447, b: 0.12771447, a: 0}
+  shellColor2: {r: 0.285418, g: 0.6981132, b: 0.2206301, a: 0}
+  dimensions: {x: 1, y: 1}
+--- !u!4 &700709482
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 700709480}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.39956623, y: -0.60557646, z: -2.9586036}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -228,6 +282,7 @@ GameObject:
   - component: {fileID: 963194228}
   - component: {fileID: 963194227}
   - component: {fileID: 963194226}
+  - component: {fileID: 963194229}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -301,6 +356,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &963194229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 963194225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa84ebc6d57d9b4eafd16e06764d9ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 700709480}
+  step: 0.2
+  orientation: {fileID: 963194228}
+  horizontalInput: 0
+  verticalInput: 0
+  orbit: 0
 --- !u!1 &1945783456
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,14 +403,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5587da37ad2d040ab247c261ae18a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
+  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   shader: {fileID: 4800000, guid: 268713c419d1d1f45bb9195d454bb534, type: 3}
-  numShells: 4
-  shellLength: 0.2
-  density: 8
-  angle: 180
-  shellColor1: {r: 0.7735849, g: 0.12771447, b: 0.12771447, a: 0}
-  shellColor2: {r: 0.285418, g: 0.6981132, b: 0.2206301, a: 0}
+  numShells: 5
+  shellLength: 0.1
+  density: 3
+  angle: 0.39269
+  rotationSpeed: -2
+  shellColor1: {r: 0.9528302, g: 0.8082593, b: 0.112362035, a: 0}
+  shellColor2: {r: 0.16140087, g: 0.19587906, b: 0.8773585, a: 0}
   dimensions: {x: 1, y: 1}
 --- !u!4 &1945783458
 Transform:
@@ -347,7 +421,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1945783456}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.39956623, y: -0.60557646, z: -2.9586036}
+  m_LocalPosition: {x: 0, y: 1.2, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

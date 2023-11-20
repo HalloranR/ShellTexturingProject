@@ -19,6 +19,7 @@ Shader "Custom/ShellShader"
             #pragma fragment frag
 
             //using the base lighting includes from the acerlola video
+            //#include "Packages/com.unity.render-piplines.universal/ShaderLibrary/UnityInput.hlsl"
             #include "UnityPBSLighting.cginc"
             #include "AutoLight.cginc"
 
@@ -45,7 +46,8 @@ Shader "Custom/ShellShader"
             int _ShellCount;
             float _ShellLength;
             float _Density;
-            float _Angle;
+            float _Angle1;
+            float _Angle2;
             float2 _Dimensions;
             float3 _ShellColor1;
             float3 _ShellColor2;
@@ -98,19 +100,16 @@ Shader "Custom/ShellShader"
 
                 float2 localUV = frac(newUV) * 2 - 1;
 
-                //float2 localUV = frac(i.uv) * 2 - 1
-
-                //uint2 tid = i.uv;
-
-                //uint seed = tid.x + 100 * tid.y + 100 * 10;
-
-                //float rand = hash(seed);
-
-                //float h = (float)_ShellIndex / (float)_ShellCount;
+                float height = (float)_ShellIndex / (float)_ShellCount;
 
                 if (_ShellIndex % 2 == 0) {
 
-                    float2 d = abs(localUV) - _Dimensions * 0.5;
+                    float s = sin(_Angle1);
+                    float c = cos(_Angle1);
+
+                    float2 q = mul(float2x2(c, s, -s, c), localUV);
+
+                    float2 d = abs(q) - (_Dimensions - height) * 0.5;
 
                     if (d.x > 0 || d.y > 0) {
                         discard;
@@ -119,12 +118,13 @@ Shader "Custom/ShellShader"
                     return float4(_ShellColor1, 1.0);
                 }
                 else {
-                    float s = sin(_Angle);
-                    float c = cos(_Angle);
+
+                    float s = sin(_Angle2);
+                    float c = cos(_Angle2);
 
                     float2 q = mul(float2x2(c, s, -s, c), localUV);
 
-                    float2 d = abs(q) - _Dimensions * 0.5;
+                    float2 d = abs(q) - (_Dimensions - height) * 0.5;
 
                     if (d.x > 0 || d.y > 0) {
                         discard;

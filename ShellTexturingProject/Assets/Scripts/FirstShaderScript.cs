@@ -18,6 +18,8 @@ public class FirstShaderScript : MonoBehaviour
 
     public float angle = 90;
 
+    public float rotationSpeed = 1.0f;
+
     public Color shellColor1;
     public Color shellColor2;
 
@@ -27,6 +29,7 @@ public class FirstShaderScript : MonoBehaviour
 
     private Material shellMaterial;
     private GameObject[] shells;
+    private float runningTotal = 0;
 
     void OnEnable()
     {
@@ -34,6 +37,9 @@ public class FirstShaderScript : MonoBehaviour
         shellMaterial = new Material(shader);
 
         shells = new GameObject[numShells];
+
+        Shader.SetGlobalFloat("_Angle1", runningTotal);
+        Shader.SetGlobalFloat("_Angle2", runningTotal + angle);
 
         //loop for the number of shells and create the layers
         for (int i = 0; i < numShells; i++)
@@ -57,10 +63,17 @@ public class FirstShaderScript : MonoBehaviour
             shells[i].GetComponent<MeshRenderer>().material.SetInt("_ShellIndex", i);
             shells[i].GetComponent<MeshRenderer>().material.SetFloat("_ShellLength", shellLength);
             shells[i].GetComponent<MeshRenderer>().material.SetFloat("_Density", density);
-            shells[i].GetComponent<MeshRenderer>().material.SetFloat("_Angle", angle);
             shells[i].GetComponent<MeshRenderer>().material.SetVector("_ShellColor1", shellColor1);
             shells[i].GetComponent<MeshRenderer>().material.SetVector("_ShellColor2", shellColor2);
             shells[i].GetComponent<MeshRenderer>().material.SetVector("_Dimensions", dimensions);
         }
+    }
+
+    private void Update()
+    {
+        runningTotal += Time.deltaTime * rotationSpeed;
+
+        Shader.SetGlobalFloat("_Angle1", runningTotal);
+        Shader.SetGlobalFloat("_Angle2", runningTotal + angle);
     }
 }
