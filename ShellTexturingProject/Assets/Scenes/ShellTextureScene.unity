@@ -403,7 +403,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af5587da37ad2d040ab247c261ae18a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
   shader: {fileID: 4800000, guid: 268713c419d1d1f45bb9195d454bb534, type: 3}
   numShells: 5
   shellLength: 0.1
